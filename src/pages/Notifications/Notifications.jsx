@@ -1,32 +1,60 @@
+import { useState } from "react";
 import dayjs from "dayjs";
-import relativeTime from 'dayjs/plugin/relativeTime';
-
+import relativeTime from "dayjs/plugin/relativeTime";
 
 const Notifications = () => {
-  dayjs.extend(relativeTime)
-  const nowDate = dayjs().add(1, 'm')
-  const relativeDate = nowDate.toNow()
-  const moreDate = dayjs().add(5, 'm')
-  const relativeMoreDate = moreDate.toNow()
-  const secDate = dayjs().add(15, 's')
-  const relativeSecDate = secDate.toNow()
+  dayjs.extend(relativeTime);
+  const nowDate = dayjs().add(1, "m");
+  const relativeDate = nowDate.toNow();
+  const moreDate = dayjs().add(5, "m");
+  const relativeMoreDate = moreDate.toNow();
+  const secDate = dayjs().add(15, "s");
+  const relativeSecDate = secDate.toNow();
+
+  const [notificationsCount, setNotificationsCount] = useState(3);
+  const [read, setRead] = useState(true);
+
+  const fisrsClick = () => {
+    setNotificationsCount((prevS) => prevS - 1);
+  };
+
+  const handleMarkAll = () => {
+    setNotificationsCount(0);
+    setRead(true);
+  };
+  console.log({ notificationsCount, read });
 
   return (
     <>
-      <div className={`min-h-screen font-light rounded-md xsm:bg-white md:w-[768px] md:mx-auto md:max-w-full md:px-10`}>
+      <div
+        className={`min-h-screen font-light rounded-md xsm:bg-white md:w-[768px] md:mx-auto md:max-w-full md:px-10`}
+      >
         <header className="container mt-[2rem] mb-[1rem]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 mt-[2rem]">
-              <p className="text-xl text-black font-bold relative">Notifications <button
-                    className={`absolute right-0 top-5 -translate-y-3 translate-x-6 h-[12px] w-[12px]  border-2 border-solid border-blue rounded-[50%] bg-[#0A327B] animate-ping`}
-                  ></button></p>
+              <p
+                className="text-xl text-black font-bold relative cursor-pointer"
+                onClick={fisrsClick}
+              >
+                Notifications{" "}
+                <button
+                  className={`absolute right-0 top-5 -translate-y-3 translate-x-6 h-[12px] w-[12px]  border-2 border-solid border-blue rounded-[50%] bg-[#0A327B] animate-ping ${
+                    read === true ? "hidden" : "visible"
+                  }`}
+                ></button>
+              </p>
               <div>
                 <button className="bg-[#0A327B] w-[32px] h-[25px] text-white rounded-md">
-                  3
+                  {notificationsCount}
                 </button>
               </div>
             </div>
-            <p className="text-sm mt-[2rem]">Mark all as read</p>
+            <p
+              className="text-sm mt-[2rem] cursor-pointer"
+              onClick={handleMarkAll}
+            >
+              Mark all as read
+            </p>
           </div>
         </header>
 
@@ -42,15 +70,20 @@ const Notifications = () => {
               </div>
               <div className="action-event text-sm">
                 <p className="text-black font-bold">
-                  abcdef{" "}
-                  <span className="text-[#5E6778] font-semibold">
-                    what if I dont know the reaction
+                  Mark Webber{" "}
+                  <span className="text-[#5E6778] font-thin italic">
+                    reacted to your recent post
                   </span>{" "}
-                  <span><strong className="text-[#0A327B] relative">
-                    or the name of the post<button
-                    className={`absolute right-0 top-0 translate-y-1 translate-x-4 h-[12px] w-[12px]  border-2 rounded-[50%] bg-red-500`}
-                  ></button>
-                  </strong></span>
+                  <span>
+                    <strong className="text-[#0A327B] relative cursor-pointer">
+                      My first tournament today!
+                      <button
+                        className={`absolute right-0 top-0 translate-y-1 translate-x-4 h-[12px] w-[12px]  border-2 rounded-[50%] bg-red-500 ${
+                          read === true ? "hidden" : "visible"
+                        }`}
+                      ></button>
+                    </strong>
+                  </span>
                 </p>
               </div>
               <div className="time-event text-sm">{relativeDate}</div>
@@ -69,14 +102,19 @@ const Notifications = () => {
               <div className="action-event text-sm">
                 <p className="text-black font-bold">
                   Jannie{" "}
-                  <span className="text-[#5E6778] font-semibold">
+                  <span className="text-[#5E6778] font-thin italic">
                     updated her
                   </span>{" "}
-                  <span><strong className="text-[#0A327B] relative">
-                    status<button
-                    className={`absolute right-0 top-0 translate-y-1 translate-x-4 h-[12px] w-[12px]  border-2 rounded-[50%] bg-red-500`}
-                  ></button>
-                  </strong></span>
+                  <span>
+                    <strong className="text-[#0A327B] relative">
+                      status
+                      <button
+                        className={`absolute right-0 top-0 translate-y-1 translate-x-4 h-[12px] w-[12px]  border-2 rounded-[50%] bg-red-500 ${
+                          read === true ? "hidden" : "visible"
+                        }`}
+                      ></button>
+                    </strong>
+                  </span>
                 </p>
               </div>
               <div className="time-event text-sm">{relativeMoreDate}</div>
@@ -94,15 +132,20 @@ const Notifications = () => {
               </div>
               <div className="action-event text-sm">
                 <p className="text-black font-bold">
-                  abcdef{" "}
-                  <span className="text-[#5E6778] font-semibold">
-                    what if I dont know the reaction
+                  Jacob Thompson{" "}
+                  <span className="text-[#5E6778] font-thin italic">
+                    has joined your group
                   </span>{" "}
-                  <span><strong className="text-[#0A327B] relative">
-                    or the name of the post<button
-                    className={`absolute right-0 top-0 translate-y-1 translate-x-4 h-[12px] w-[12px]  border-2 rounded-[50%] bg-red-500`}
-                  ></button>
-                  </strong></span>
+                  <span>
+                    <strong className="text-[#0A327B] relative capitalize">
+                      chess club
+                      <button
+                        className={`absolute right-0 top-0 translate-y-1 translate-x-4 h-[12px] w-[12px]  border-2 rounded-[50%] bg-red-500 ${
+                          read === true ? "hidden" : "visible"
+                        }`}
+                      ></button>
+                    </strong>
+                  </span>
                 </p>
               </div>
               <div className="time-event text-sm">{relativeSecDate}</div>
@@ -120,19 +163,18 @@ const Notifications = () => {
               </div>
               <div className="action-event text-sm">
                 <p className="text-black font-bold">
-                  abcdef{" "}
-                  <span className="text-[#5E6778] font-semibold">
-                    what if I dont know the reaction
-                  </span>{" "}
-                  <span><strong className="text-[#0A327B] relative">
-                    or the name of the post
-                  </strong></span>
+                  Rizky Hasanuddin{" "}
+                  <span className="text-[#5E6778] font-thin italic">
+                    sent you a private message
+                  </span>
                 </p>
               </div>
               <div className="time-event text-sm">{relativeSecDate}</div>
-              <div className="action-event-comment p-2 bg-[#E5EFFA] rounded-[5px]">
+              <div className="action-event-comment border-2 p-2 hover:bg-[#E5EFFA] hover:border-none hover:ease-linear hover:duration-200 cursor-pointer rounded-[5px]">
                 <p className="text-[#5E6778] font-medium text-sm">
-                Hello, thanks for setting up the Chess Club. I’ve been a member for a few weeks now and I’m already having lots of fun and improving my game.
+                  Hello, thanks for setting up the Chess Club. I’ve been a
+                  member for a few weeks now and I’m already having lots of fun
+                  and improving my game.
                 </p>
               </div>
             </div>
@@ -149,13 +191,10 @@ const Notifications = () => {
               </div>
               <div className="action-event text-sm">
                 <p className="text-black font-bold">
-                  abcdef{" "}
-                  <span className="text-[#5E6778] font-semibold">
-                    what if I dont know the reaction
-                  </span>{" "}
-                  <span><strong className="text-[#0A327B] relative">
-                    or the name of the post
-                  </strong></span>
+                  Kimberly Smith{" "}
+                  <span className="text-[#5E6778] font-thin italic">
+                    commented on your picture
+                  </span>
                 </p>
               </div>
               <div className="time-event text-sm">{relativeSecDate}</div>
@@ -180,15 +219,15 @@ const Notifications = () => {
               </div>
               <div className="action-event text-sm">
                 <p className="text-black font-bold">
-                  abcdef{" "}
-                  <span className="text-[#5E6778] font-semibold">
-                    what if I dont know the reaction
+                  Nathan Peterson{" "}
+                  <span className="text-[#5E6778] font-thin italic">
+                    reacted to your recent post
                   </span>{" "}
-                  <span><strong className="text-[#0A327B] relative">
-                    or the name of the post<button
-                    className={`absolute right-0 top-0 translate-y-1 translate-x-4 h-[12px] w-[12px]  border-2 rounded-[50%] bg-red-500`}
-                  ></button>
-                  </strong></span>
+                  <span>
+                    <strong className="text-[#0A327B] relative">
+                      5 end-game strategies to increase your win rate
+                    </strong>
+                  </span>
                 </p>
               </div>
               <div className="time-event text-sm">{relativeDate}</div>
@@ -205,16 +244,16 @@ const Notifications = () => {
                 />
               </div>
               <div className="action-event text-sm">
-                <p className="text-black font-bold">
-                  Jannie{" "}
-                  <span className="text-[#5E6778] font-semibold">
-                    updated her
+                <p className="text-black font-bold capitalize">
+                  Anna kim{" "}
+                  <span className="text-[#5E6778] font-thin italic lowercase">
+                    left the group
                   </span>{" "}
-                  <span><strong className="text-[#0A327B] relative">
-                    status<button
-                    className={`absolute right-0 top-0 translate-y-1 translate-x-4 h-[12px] w-[12px]  border-2 rounded-[50%] bg-red-500`}
-                  ></button>
-                  </strong></span>
+                  <span>
+                    <strong className="text-[#0A327B] relative capitalize">
+                      chess club
+                    </strong>
+                  </span>
                 </p>
               </div>
               <div className="time-event text-sm">{relativeMoreDate}</div>
