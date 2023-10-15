@@ -268,7 +268,7 @@ const Notifications = () => {
           </div>
 
           <div className="rounded-lg">
-            <div className="event cursor-pointer">
+            <div className="relative event cursor-pointer">
               <div className="image--event">
                 <img
                   src="https://s3-alpha-sig.figma.com/img/4824/8e10/d7c8076c6d0819ece7f7ffc16c25eaa7?Expires=1698019200&Signature=byL55qpbXYohPqCONR65P3s-lciGg5dGsXNEd0qrmrs3KJyLydAz8Pb8ZUq5pUQSy1ZdBv8MqqNGxIAnuhGRKpAGIL8wYaFqj2ome2hxT9THqKJoG7DxgJPCDpu7aKOHGA4NZyou64YF1CK01XE2nRoN6f4SkwEpMKfim4QsnEutHcTsKD3-9qIm5rl0MYFE5Nxmhc9uCMvW2SCsQC7ugLif1VDr9yKx0lu9LBHLXYq0ahUnX2A8FTbsI~e5S4tQRtOv-6LN-jud~BRNA9~tNM7CY~qrTXKXQRpydBnGGb97tUrQjkqW1XoEzSGiwVnLcXQVdShgaCjLziFCb9fd1w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
@@ -285,7 +285,7 @@ const Notifications = () => {
                 </p>
               </div>
               <div className="time-event text-sm">{relativeSecDate}</div>
-              <div className="comment-image--event">
+              <div className="comment-image--event md:absolute bottom-50 right-5">
                 <img
                   src="https://s3-alpha-sig.figma.com/img/6110/3a53/2235e7756ac13d12213d12efd2f4d2a5?Expires=1698019200&Signature=YUZI464vSuAjM3acqZ~dWoR4d2Zc-eNUc1xh8u9pdGHvnwAo87yBqB-1HoBxV61am1S2BZhYtSYljHNH9b~cNURBGnZXGGqR9sGsoATPuFPoR0IdYzFJjWUV1u3HRpjiKZLqW4Dgk9qyh7lkwe9zROCEjCWnXxDU~Lu35L9I-DvZnRb~~I-DgkEwkSuY37diwACD-LZ~9lACymO8HGS82-uUhnMYKuKydpFF00N0aCZOhNkAbFLhJmKkD3iNwW~k3QfPHlAFhowqQmiS9da8IilI2HHj2BLUEhrGmo1bdz5fkGrQp0AseqPUnVClWtFLiQsfIq19PreocU1roi-~Kw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
                   alt="user image"
