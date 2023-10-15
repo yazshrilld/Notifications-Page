@@ -25,12 +25,12 @@ const Notifications = () => {
       value: 2,
       read: false,
     },
-    comment: {
+    group: {
       name: "GP",
       value: 3,
       read: false,
     },
-    comment: {
+    reaction: {
       name: "RT",
       value: 4,
       read: false,
@@ -40,37 +40,56 @@ const Notifications = () => {
   const [myActions, setMyActions] = useState({
     clickedStatus: actionNotification.status.read,
     clickedComment: actionNotification.comment.read,
-    clickedGroup: actionNotification.comment.read,
+    clickedGroup: actionNotification.group.read,
     clickedReacted: actionNotification.comment.read,
-  })  
+  });
 
   const fisrsClick = () => {};
 
-  const handleMarkAll = () => {};
-
-  const handleFirstClick = () => {
+  const handleMarkAll = () => {
+    setNotificationsCount(0);
     setMyActions((prevS) => ({
       ...prevS,
-      clickedStatus: true
-    }))
+      clickedStatus: true,
+      clickedComment: true,
+      clickedGroup: true,
+    }));
+    setRead(true)
+  };
+
+  const handleFirstClick = () => {
+    if (!myActions.clickedStatus) {
+      setNotificationsCount(notificationsCount - 1);
+      setMyActions((prevS) => ({
+        ...prevS,
+        clickedStatus: true,
+      }));
+    }
   };
 
   const handleSecondClick = () => {
-    setMyActions((prevS) => ({
-      ...prevS,
-      clickedComment: true
-    }))
+    if (!myActions.clickedComment) {
+      setNotificationsCount(notificationsCount - 1);
+      setMyActions((prevS) => ({
+        ...prevS,
+        clickedComment: true,
+      }));
+    }
   };
 
   const handleThirdClick = () => {
-    setMyActions((prevS) => ({
-      ...prevS,
-      clickedGroup: true
-    }))
+    if (!myActions.clickedGroup) {
+      setNotificationsCount(notificationsCount - 1);
+      setMyActions((prevS) => ({
+        ...prevS,
+        clickedGroup: true,
+      }));
+    }
   };
-  console.log("Status: ", myActions.clickedStatus);
-  console.log("Comment: ", myActions.clickedComment);
-  console.log("Group: ", myActions.clickedGroup);
+
+  const handleFourthClick = () => {
+    console.log("I am clicked");
+  }
 
   return (
     <>
@@ -86,13 +105,16 @@ const Notifications = () => {
               >
                 Notifications{" "}
                 <button
-                  className={`absolute right-0 top-5 -translate-y-3 translate-x-6 h-[12px] w-[12px]  border-2 border-solid border-blue rounded-[50%] bg-[#0A327B] animate-ping ${
-                    read === true ? "hidden" : "visible"
+                  className={`absolute right-0 top-5 -translate-y-3 translate-x-6 h-[12px] w-[12px] border-2 border-solid border-blue rounded-[50%] bg-[#0A327B] animate-ping ${
+                    read === true || notificationsCount === 0
+                      ? "hidden"
+                      : "visible"
                   }`}
                 ></button>
               </p>
               <div>
-                <button className="bg-[#0A327B] w-[32px] h-[25px] text-white rounded-md">
+                <button className={`bg-[#0A327B] w-[32px] h-[25px] text-white rounded-md ${read === true ? "ease-linear duration-200 rotate-180"
+                      : ""}`}>
                   {notificationsCount}
                 </button>
               </div>
@@ -108,12 +130,12 @@ const Notifications = () => {
 
         <section className="container space-y-4">
           <div className="bg-[#F7FAFD] rounded-lg">
-            <div className="event">
+            <div className="event cursor-pointer">
               <div className="image--event">
                 <img
                   src="https://s3-alpha-sig.figma.com/img/3fe9/8e57/da8fc038a6ba43fc075671b63941d303?Expires=1698019200&Signature=MdLWTSYdMKyvJbIHWkGrd79j3B1liPpCCL-YMuSJNeseJ8Mzhvf8FmLUuglKyggWlOK3RDWOlsLkuXVi3OyBIMnwzO6~6BOo0Yox01V4Ngo8CcSWYr9zP6oSrxAX6tlVXZeM1AcTFPe6IvqA~E8aJroGsdfhdVQE9XfcV2a8PO76DmdKSxdjtrwjVr0xJSJu~xcSR5C5Ahgtb4PWowUAqGigAVdySyNp4YyfsHJd2Urb~o8S4PUJ2JpdzrYsYTMECf4TCpnmp2eNno-bZ9J~-3HBafWms--C-8BGkVJblstfB6VBMoQWSItJHOODJx9v16aURchcIwGutKyEvm4U2g__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
                   alt="user image"
-                  className="rounded-full border-2 border-red-500"
+                  className= "rounded-full border-[3px] border-red-500"
                 />
               </div>
               <div className="action-event text-sm">
@@ -130,7 +152,9 @@ const Notifications = () => {
                       My first tournament today!
                       <button
                         className={`absolute right-0 top-0 translate-y-1 translate-x-4 h-[12px] w-[12px]  border-2 rounded-[50%] bg-red-500 ${
-                          myActions.clickedStatus === true ? "hidden" : "visible"
+                          myActions.clickedStatus === true
+                            ? "hidden"
+                            : "visible"
                         }`}
                       ></button>
                     </strong>
@@ -142,12 +166,16 @@ const Notifications = () => {
           </div>
 
           <div className="bg-[#F7FAFD] rounded-lg">
-            <div className="event">
+            <div className="event cursor-pointer">
               <div className="image--event">
                 <img
                   src="https://s3-alpha-sig.figma.com/img/0c16/80be/bc0e45eb9b71ee1fdd3e99d8b506b49a?Expires=1698019200&Signature=U8qS8MkrzkKYpV5AyL2Fjv9vsQz0vw91TS7JEESauhf1V3USpZhsyaF66cliLmvh~tWVMQZ2m1iFx1PCPVU16wJDAHQnMk~SAvqjPjO9pBMjOXnbWU~W9kSmh0e1~RzKvNo~YTejIE1Q83l7rN-CZ5Gr3YxFhyv4OfHKDJW6KfD-v4WqXVURsfO4Ca-FK9-tDjutmXXhDKyzXSGrgjUJQqN5~axXlkOoOr1YtCSZkyPl6FxxS19V84XDBxYvGamp9HqlmKnwCuyvTL-VboW0lC48DtTCU0rOXhaf9Vmwt0eHttviBBFV1Rzy0ENcZx~URjMnaXE1G85NxmXEeIpWlg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
                   alt="user image"
-                  className="rounded-full border-2 border-green-500"
+                  className={`rounded-full border-green-500 ${
+                    !myActions.clickedComment === true
+                      ? "border-[3px]"
+                      : "border-0"
+                  }`}
                 />
               </div>
               <div className="action-event text-sm">
@@ -164,7 +192,9 @@ const Notifications = () => {
                       status
                       <button
                         className={`absolute right-0 top-0 translate-y-1 translate-x-4 h-[12px] w-[12px]  border-2 rounded-[50%] bg-red-500 ${
-                          myActions.clickedComment === true ? "hidden" : "visible"
+                          myActions.clickedComment === true
+                            ? "hidden"
+                            : "visible"
                         }`}
                       ></button>
                     </strong>
@@ -176,7 +206,7 @@ const Notifications = () => {
           </div>
 
           <div className="bg-[#F7FAFD] rounded-lg">
-            <div className="event">
+            <div className="event cursor-pointer">
               <div className="image--event">
                 <img
                   src="https://s3-alpha-sig.figma.com/img/44bb/fe7e/ca6ef908da8a984da65c6f4b675f6834?Expires=1698019200&Signature=FJl~pS8B6XpIT0IwbZapaxBSRo1p2X3YkMWqaTEFsluzeUDSByEZ3yIyH7knud0vvyXIEQQU8oVbC0yT6PgHdNDZcPomHyDsFolFrmziAlo0FvAWLMZMnp3xsGsC38DAFfc~yoYFtySRtJJkTLxgXWcVB0toQfE1u0mX9YJofIq69X5r1jkorMr9kxejXX4ho8pMUp31FANY6XhB6RRM0vqRqIYlhwwNTTl7i6Q2NQrnhAUSrVD7uOLNQLLoZR-o29IznqXLRrqi-ox1VFI1YKSEN8fyL2vN~IEL9sjrlr1wjw7FKhdBIdgHDV7frngRiUNfyKmB~olUzbKkzNwNhQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
@@ -210,7 +240,7 @@ const Notifications = () => {
           </div>
 
           <div className="rounded-lg">
-            <div className="event">
+            <div className="event cursor-pointer">
               <div className="image--event">
                 <img
                   src="https://s3-alpha-sig.figma.com/img/5431/223f/91e1410483ef6324ce0ffe0dbce1552d?Expires=1698019200&Signature=CxPaDH5MZOs5m1~U-bV~yyrwkXkA3hoAjE~jprQfBobq6Sm0smywStejj0qeit4kMAroz8sPMKaOrAFxgo7QRtL1L~vr~z~vUpoiqd5snmydHtJi0VsBI0NIravCQBqpWOq-su2m~BgxunVE3ikGvQGrA3yPol8Ip3HmDRKepmgYrmSl5sjqWMZOHkbZnSPK2K0yQdhZx7gTASRSXNdD3GqawrGTrb78XO-i-nhctxIaDwFVss8kyqlfLI5xwrjmnQ0ZQANGO2A51meVCUQKI0IuTnsvKEZr4e79cGFrrZ0nRUqLr-SEbsW7CiyjOaYfAQS5xoKjpN9oCaVq~qRzHg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
@@ -221,14 +251,14 @@ const Notifications = () => {
               <div className="action-event text-sm">
                 <p className="text-black font-bold">
                   Rizky Hasanuddin{" "}
-                  <span className="text-[#5E6778] font-thin italic">
+                  <span className="text-[#5E6778] font-thin italic" onClick={handleFourthClick}>
                     sent you a private message
                   </span>
                 </p>
               </div>
               <div className="time-event text-sm">{relativeSecDate}</div>
               <div className="action-event-comment border-2 p-2 hover:bg-[#E5EFFA] hover:border-none hover:ease-linear hover:duration-200 cursor-pointer rounded-[5px]">
-                <p className="text-[#5E6778] font-medium text-sm">
+                <p className="text-[#5E6778] font-medium text-sm" onClick={handleFourthClick}>
                   Hello, thanks for setting up the Chess Club. I’ve been a
                   member for a few weeks now and I’m already having lots of fun
                   and improving my game.
@@ -238,7 +268,7 @@ const Notifications = () => {
           </div>
 
           <div className="rounded-lg">
-            <div className="event">
+            <div className="event cursor-pointer">
               <div className="image--event">
                 <img
                   src="https://s3-alpha-sig.figma.com/img/4824/8e10/d7c8076c6d0819ece7f7ffc16c25eaa7?Expires=1698019200&Signature=byL55qpbXYohPqCONR65P3s-lciGg5dGsXNEd0qrmrs3KJyLydAz8Pb8ZUq5pUQSy1ZdBv8MqqNGxIAnuhGRKpAGIL8wYaFqj2ome2hxT9THqKJoG7DxgJPCDpu7aKOHGA4NZyou64YF1CK01XE2nRoN6f4SkwEpMKfim4QsnEutHcTsKD3-9qIm5rl0MYFE5Nxmhc9uCMvW2SCsQC7ugLif1VDr9yKx0lu9LBHLXYq0ahUnX2A8FTbsI~e5S4tQRtOv-6LN-jud~BRNA9~tNM7CY~qrTXKXQRpydBnGGb97tUrQjkqW1XoEzSGiwVnLcXQVdShgaCjLziFCb9fd1w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
@@ -266,7 +296,7 @@ const Notifications = () => {
           </div>
 
           <div className="rounded-lg">
-            <div className="event">
+            <div className="event cursor-pointer">
               <div className="image--event">
                 <img
                   src="https://s3-alpha-sig.figma.com/img/6b1f/d533/a043b91129676cf909b26ff15d192d79?Expires=1698019200&Signature=fpbfyTskTmmKk3Pclgf9PAn7u8HgJbMsMuluAFGJBcyHfYj9XttibnNPP2idGDmw6psLumQqhpgcFZoM~3KddTl1OLDxqHURkLELyaP3XiGvUumq~zhdsXZDO2bmERkykYOp2K6FANsOsPbtVDrdL~IpE-0muMvYZojgzoYh-f1YdazXDFM9PkWJjBikQeHCqxUg9OrEqLmC8S0tVXy8E5qhCZIXB6utNwLpa5qoGV4vJmIxvop4tbVmM4nHL1lDkRhNAZQmCDLA-VoxLGbJgvcepZRFFLL4zI-fS8vYaUjE9N465leHqxmvjrtlh0q7cqECO5dMxAvPA6kRnB084g__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
@@ -292,7 +322,7 @@ const Notifications = () => {
           </div>
 
           <div className="rounded-lg">
-            <div className="event">
+            <div className="event cursor-pointer">
               <div className="image--event">
                 <img
                   src="https://s3-alpha-sig.figma.com/img/405d/fba2/2e58681ac44c6474bb69ac31ee3cf7a6?Expires=1698019200&Signature=Jmu8waobnhhQcdvuU3sMCgR1nyO2ZepvyFw0YTqhi6En68mOxMfr7lDEdjkx5-a5sS49Tui4NYO3mf6yBscBn5THGlJi~6bQ~XIXJzZgQ9JDF9OlUB0J3mc4amAxWzmnOubWuDLC-QH2NituQn4PG1hHLQVoyAHgo9T5MuFQTq0sbgyFyDEdlyq9~3wUuHIa~Rb0~Ns1ee6kq0KSUulSnI0pDBI0HkbMxwROZFqvGh6067t5ILThzogZSwExAyDR6vu2QRBnv0JnPQt5zzY8~NxxhpdbAaSgZiSrgyhTcVg66jYqbO~LV0LuRHxO~yDVYi~fkOEcy70cyGLcWnopJg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
