@@ -12,17 +12,65 @@ const Notifications = () => {
   const relativeSecDate = secDate.toNow();
 
   const [notificationsCount, setNotificationsCount] = useState(3);
-  const [read, setRead] = useState(true);
+  const [read, setRead] = useState(false);
 
-  const fisrsClick = () => {
-    setNotificationsCount((prevS) => prevS - 1);
+  const actionNotification = {
+    status: {
+      name: "ST",
+      value: 1,
+      read: false,
+    },
+    comment: {
+      name: "CT",
+      value: 2,
+      read: false,
+    },
+    comment: {
+      name: "GP",
+      value: 3,
+      read: false,
+    },
+    comment: {
+      name: "RT",
+      value: 4,
+      read: false,
+    },
   };
 
-  const handleMarkAll = () => {
-    setNotificationsCount(0);
-    setRead(true);
+  const [myActions, setMyActions] = useState({
+    clickedStatus: actionNotification.status.read,
+    clickedComment: actionNotification.comment.read,
+    clickedGroup: actionNotification.comment.read,
+    clickedReacted: actionNotification.comment.read,
+  })  
+
+  const fisrsClick = () => {};
+
+  const handleMarkAll = () => {};
+
+  const handleFirstClick = () => {
+    setMyActions((prevS) => ({
+      ...prevS,
+      clickedStatus: true
+    }))
   };
-  console.log({ notificationsCount, read });
+
+  const handleSecondClick = () => {
+    setMyActions((prevS) => ({
+      ...prevS,
+      clickedComment: true
+    }))
+  };
+
+  const handleThirdClick = () => {
+    setMyActions((prevS) => ({
+      ...prevS,
+      clickedGroup: true
+    }))
+  };
+  console.log("Status: ", myActions.clickedStatus);
+  console.log("Comment: ", myActions.clickedComment);
+  console.log("Group: ", myActions.clickedGroup);
 
   return (
     <>
@@ -75,11 +123,14 @@ const Notifications = () => {
                     reacted to your recent post
                   </span>{" "}
                   <span>
-                    <strong className="text-[#0A327B] relative cursor-pointer">
+                    <strong
+                      className="text-[#0A327B] relative cursor-pointer"
+                      onClick={handleFirstClick}
+                    >
                       My first tournament today!
                       <button
                         className={`absolute right-0 top-0 translate-y-1 translate-x-4 h-[12px] w-[12px]  border-2 rounded-[50%] bg-red-500 ${
-                          read === true ? "hidden" : "visible"
+                          myActions.clickedStatus === true ? "hidden" : "visible"
                         }`}
                       ></button>
                     </strong>
@@ -106,11 +157,14 @@ const Notifications = () => {
                     updated her
                   </span>{" "}
                   <span>
-                    <strong className="text-[#0A327B] relative">
+                    <strong
+                      className="text-[#0A327B] relative"
+                      onClick={handleSecondClick}
+                    >
                       status
                       <button
                         className={`absolute right-0 top-0 translate-y-1 translate-x-4 h-[12px] w-[12px]  border-2 rounded-[50%] bg-red-500 ${
-                          read === true ? "hidden" : "visible"
+                          myActions.clickedComment === true ? "hidden" : "visible"
                         }`}
                       ></button>
                     </strong>
@@ -137,11 +191,14 @@ const Notifications = () => {
                     has joined your group
                   </span>{" "}
                   <span>
-                    <strong className="text-[#0A327B] relative capitalize">
+                    <strong
+                      className="text-[#0A327B] relative capitalize"
+                      onClick={handleThirdClick}
+                    >
                       chess club
                       <button
                         className={`absolute right-0 top-0 translate-y-1 translate-x-4 h-[12px] w-[12px]  border-2 rounded-[50%] bg-red-500 ${
-                          read === true ? "hidden" : "visible"
+                          myActions.clickedGroup === true ? "hidden" : "visible"
                         }`}
                       ></button>
                     </strong>

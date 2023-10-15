@@ -34,3 +34,28 @@ export const DUMMY_USER_DATA = [
     updated_at: "2016-02-27T15:24:08Z",
   },
 ];
+
+actionNotifications = [
+  {
+    status: {
+      name: "ST",
+      value: 1,
+      read: false,
+    },
+    comment: {
+      name: "CT",
+      value: 2,
+      read: false,
+    },
+    Group: {
+      name: "GP",
+      value: 3,
+      read: false,
+    },
+    reacted: {
+      name: "RT",
+      value: 4,
+      read: false,
+    },
+  },
+];
