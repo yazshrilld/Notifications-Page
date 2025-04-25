@@ -6,7 +6,15 @@
 
 @layer base {
   body {
-    @apply font-jakarta text-[#5E6778] bg-[#F7FAFD];
+    /* @apply font-jakarta text-[#5E6778] bg-[#F3FFF460]; */
+
+    /* background-color: linear-gradient(to right, #DFFFE0, #FFF4E0); */
+
+    @apply bg-gradient-to-b from-[#F8FAFC99] to-[#F8FAFCdd];
+
+    /* @apply bg-gradient-to-r from-[#F3FFF4] to-[#FFF9F0]; */
+
+    /* @apply bg-gradient-to-b from-[#161A23] via-[#0D0F15] to-[#0D0F15]; */
   }
 }
 
@@ -39,5 +47,5 @@
   .comment-image--event {
     grid-column: 3 / 4;
     grid-row: 1 / 4;
-  } 
+  }
 }

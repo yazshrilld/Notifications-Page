@@ -1,8 +1,18 @@
 import { useState } from "react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import FirstImage from "../../assets/img/aiony-haust-3TLl_97HNJo-unsplash.jpg";
+import SecondImage from "../../assets/img/alex-suprun-ZHvM3XIOHoE-unsplash.jpg";
+import ThirdImage from "../../assets/img/alexander-hipp-iEEBWgY_6lA-unsplash.jpg";
+import FourthImage from "../../assets/img/christopher-campbell-rDEOVtE7vOs-unsplash.jpg";
+import FifthImage from "../../assets/img/diego-hernandez-MSepzbKFz10-unsplash.jpg";
+import SixthImage from "../../assets/img/ferr-studio-G2Qjx1y9aAM-unsplash.jpg";
+import SeventhImage from "../../assets/img/michael-dam-mEZ3PoFGs_k-unsplash.jpg";
+import EighthImage from "../../assets/img/vicky-hladynets-C8Ta0gwPbQg-unsplash.jpg";
 
 const Notifications = () => {
+  const repeatedImages = Array(30).fill(FifthImage); // 30 identical images
+
   dayjs.extend(relativeTime);
   const nowDate = dayjs().add(1, "m");
   const relativeDate = nowDate.toNow();
@@ -54,7 +64,7 @@ const Notifications = () => {
       clickedComment: true,
       clickedGroup: true,
     }));
-    setRead(true)
+    setRead(true);
   };
 
   const handleFirstClick = () => {
@@ -89,7 +99,7 @@ const Notifications = () => {
 
   const handleFourthClick = () => {
     console.log("I am clicked");
-  }
+  };
 
   return (
     <>
@@ -133,9 +143,9 @@ const Notifications = () => {
             <div className="event cursor-pointer">
               <div className="image--event">
                 <img
-                  src="https://s3-alpha-sig.figma.com/img/3fe9/8e57/da8fc038a6ba43fc075671b63941d303?Expires=1698019200&Signature=MdLWTSYdMKyvJbIHWkGrd79j3B1liPpCCL-YMuSJNeseJ8Mzhvf8FmLUuglKyggWlOK3RDWOlsLkuXVi3OyBIMnwzO6~6BOo0Yox01V4Ngo8CcSWYr9zP6oSrxAX6tlVXZeM1AcTFPe6IvqA~E8aJroGsdfhdVQE9XfcV2a8PO76DmdKSxdjtrwjVr0xJSJu~xcSR5C5Ahgtb4PWowUAqGigAVdySyNp4YyfsHJd2Urb~o8S4PUJ2JpdzrYsYTMECf4TCpnmp2eNno-bZ9J~-3HBafWms--C-8BGkVJblstfB6VBMoQWSItJHOODJx9v16aURchcIwGutKyEvm4U2g__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+                  src={FifthImage}
                   alt="user image"
-                  className= "rounded-full border-[3px] border-red-500"
+                  className= "rounded-full h-50 border-[3px] border-purple-500"
                 />
               </div>
               <div className="action-event text-sm">
@@ -169,7 +179,7 @@ const Notifications = () => {
             <div className="event cursor-pointer">
               <div className="image--event">
                 <img
-                  src="https://s3-alpha-sig.figma.com/img/0c16/80be/bc0e45eb9b71ee1fdd3e99d8b506b49a?Expires=1698019200&Signature=U8qS8MkrzkKYpV5AyL2Fjv9vsQz0vw91TS7JEESauhf1V3USpZhsyaF66cliLmvh~tWVMQZ2m1iFx1PCPVU16wJDAHQnMk~SAvqjPjO9pBMjOXnbWU~W9kSmh0e1~RzKvNo~YTejIE1Q83l7rN-CZ5Gr3YxFhyv4OfHKDJW6KfD-v4WqXVURsfO4Ca-FK9-tDjutmXXhDKyzXSGrgjUJQqN5~axXlkOoOr1YtCSZkyPl6FxxS19V84XDBxYvGamp9HqlmKnwCuyvTL-VboW0lC48DtTCU0rOXhaf9Vmwt0eHttviBBFV1Rzy0ENcZx~URjMnaXE1G85NxmXEeIpWlg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+                  src={SecondImage}
                   alt="user image"
                   className={`rounded-full border-green-500 ${
                     !myActions.clickedComment === true
@@ -209,7 +219,7 @@ const Notifications = () => {
             <div className="event cursor-pointer">
               <div className="image--event">
                 <img
-                  src="https://s3-alpha-sig.figma.com/img/44bb/fe7e/ca6ef908da8a984da65c6f4b675f6834?Expires=1698019200&Signature=FJl~pS8B6XpIT0IwbZapaxBSRo1p2X3YkMWqaTEFsluzeUDSByEZ3yIyH7knud0vvyXIEQQU8oVbC0yT6PgHdNDZcPomHyDsFolFrmziAlo0FvAWLMZMnp3xsGsC38DAFfc~yoYFtySRtJJkTLxgXWcVB0toQfE1u0mX9YJofIq69X5r1jkorMr9kxejXX4ho8pMUp31FANY6XhB6RRM0vqRqIYlhwwNTTl7i6Q2NQrnhAUSrVD7uOLNQLLoZR-o29IznqXLRrqi-ox1VFI1YKSEN8fyL2vN~IEL9sjrlr1wjw7FKhdBIdgHDV7frngRiUNfyKmB~olUzbKkzNwNhQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+                  src={ThirdImage}
                   alt="user image"
                   className="rounded-full "
                 />
@@ -243,7 +253,7 @@ const Notifications = () => {
             <div className="event cursor-pointer">
               <div className="image--event">
                 <img
-                  src="https://s3-alpha-sig.figma.com/img/5431/223f/91e1410483ef6324ce0ffe0dbce1552d?Expires=1698019200&Signature=CxPaDH5MZOs5m1~U-bV~yyrwkXkA3hoAjE~jprQfBobq6Sm0smywStejj0qeit4kMAroz8sPMKaOrAFxgo7QRtL1L~vr~z~vUpoiqd5snmydHtJi0VsBI0NIravCQBqpWOq-su2m~BgxunVE3ikGvQGrA3yPol8Ip3HmDRKepmgYrmSl5sjqWMZOHkbZnSPK2K0yQdhZx7gTASRSXNdD3GqawrGTrb78XO-i-nhctxIaDwFVss8kyqlfLI5xwrjmnQ0ZQANGO2A51meVCUQKI0IuTnsvKEZr4e79cGFrrZ0nRUqLr-SEbsW7CiyjOaYfAQS5xoKjpN9oCaVq~qRzHg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+                  src={SecondImage}
                   alt="user image"
                   className="rounded-full "
                 />
@@ -271,7 +281,7 @@ const Notifications = () => {
             <div className="relative event cursor-pointer">
               <div className="image--event">
                 <img
-                  src="https://s3-alpha-sig.figma.com/img/4824/8e10/d7c8076c6d0819ece7f7ffc16c25eaa7?Expires=1698019200&Signature=byL55qpbXYohPqCONR65P3s-lciGg5dGsXNEd0qrmrs3KJyLydAz8Pb8ZUq5pUQSy1ZdBv8MqqNGxIAnuhGRKpAGIL8wYaFqj2ome2hxT9THqKJoG7DxgJPCDpu7aKOHGA4NZyou64YF1CK01XE2nRoN6f4SkwEpMKfim4QsnEutHcTsKD3-9qIm5rl0MYFE5Nxmhc9uCMvW2SCsQC7ugLif1VDr9yKx0lu9LBHLXYq0ahUnX2A8FTbsI~e5S4tQRtOv-6LN-jud~BRNA9~tNM7CY~qrTXKXQRpydBnGGb97tUrQjkqW1XoEzSGiwVnLcXQVdShgaCjLziFCb9fd1w__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+                  src={ThirdImage}
                   alt="user image"
                   className="rounded-full "
                 />
@@ -287,7 +297,7 @@ const Notifications = () => {
               <div className="time-event text-sm">{relativeSecDate}</div>
               <div className="comment-image--event md:absolute bottom-50 right-5">
                 <img
-                  src="https://s3-alpha-sig.figma.com/img/6110/3a53/2235e7756ac13d12213d12efd2f4d2a5?Expires=1698019200&Signature=YUZI464vSuAjM3acqZ~dWoR4d2Zc-eNUc1xh8u9pdGHvnwAo87yBqB-1HoBxV61am1S2BZhYtSYljHNH9b~cNURBGnZXGGqR9sGsoATPuFPoR0IdYzFJjWUV1u3HRpjiKZLqW4Dgk9qyh7lkwe9zROCEjCWnXxDU~Lu35L9I-DvZnRb~~I-DgkEwkSuY37diwACD-LZ~9lACymO8HGS82-uUhnMYKuKydpFF00N0aCZOhNkAbFLhJmKkD3iNwW~k3QfPHlAFhowqQmiS9da8IilI2HHj2BLUEhrGmo1bdz5fkGrQp0AseqPUnVClWtFLiQsfIq19PreocU1roi-~Kw__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+                  src={SixthImage}
                   alt="user image"
                   className="outline-none rounded-lg w-[49px] h-[39px]"
                 />
@@ -299,7 +309,7 @@ const Notifications = () => {
             <div className="event cursor-pointer">
               <div className="image--event">
                 <img
-                  src="https://s3-alpha-sig.figma.com/img/6b1f/d533/a043b91129676cf909b26ff15d192d79?Expires=1698019200&Signature=fpbfyTskTmmKk3Pclgf9PAn7u8HgJbMsMuluAFGJBcyHfYj9XttibnNPP2idGDmw6psLumQqhpgcFZoM~3KddTl1OLDxqHURkLELyaP3XiGvUumq~zhdsXZDO2bmERkykYOp2K6FANsOsPbtVDrdL~IpE-0muMvYZojgzoYh-f1YdazXDFM9PkWJjBikQeHCqxUg9OrEqLmC8S0tVXy8E5qhCZIXB6utNwLpa5qoGV4vJmIxvop4tbVmM4nHL1lDkRhNAZQmCDLA-VoxLGbJgvcepZRFFLL4zI-fS8vYaUjE9N465leHqxmvjrtlh0q7cqECO5dMxAvPA6kRnB084g__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+                  src={FifthImage}
                   alt="user image"
                   className="rounded-full"
                 />
@@ -325,7 +335,7 @@ const Notifications = () => {
             <div className="event cursor-pointer">
               <div className="image--event">
                 <img
-                  src="https://s3-alpha-sig.figma.com/img/405d/fba2/2e58681ac44c6474bb69ac31ee3cf7a6?Expires=1698019200&Signature=Jmu8waobnhhQcdvuU3sMCgR1nyO2ZepvyFw0YTqhi6En68mOxMfr7lDEdjkx5-a5sS49Tui4NYO3mf6yBscBn5THGlJi~6bQ~XIXJzZgQ9JDF9OlUB0J3mc4amAxWzmnOubWuDLC-QH2NituQn4PG1hHLQVoyAHgo9T5MuFQTq0sbgyFyDEdlyq9~3wUuHIa~Rb0~Ns1ee6kq0KSUulSnI0pDBI0HkbMxwROZFqvGh6067t5ILThzogZSwExAyDR6vu2QRBnv0JnPQt5zzY8~NxxhpdbAaSgZiSrgyhTcVg66jYqbO~LV0LuRHxO~yDVYi~fkOEcy70cyGLcWnopJg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+                  src={SixthImage}
                   alt="user image"
                   className="rounded-full "
                 />
@@ -347,7 +357,49 @@ const Notifications = () => {
             </div>
           </div>
         </section>
-      </div>
+      </div> 
+    
+      {/* <div>{""}</div>
+      <section class="bg-[#DFFFE0] p-10">
+        <h2 class="text-[#333] text-xl font-bold">Welcome to My Page</h2>
+        <p class="text-[#333]">This section has a calm light green background.</p>
+      </section>
+
+      <section class="bg-[#FFF4E0] p-10">
+        <h2 class="text-[#333] text-xl font-bold">More Info</h2>
+        <p class="text-[#333]">This section uses a soft orange for warmth.</p>
+      </section>
+      <section class="bg-[#DFFFE0] p-12">
+        <div class="bg-[#FFF4E0] p-6 rounded-lg shadow">
+          <h3 class="text-lg font-semibold text-[#333]">Card Title</h3>
+          <p class="text-[#333]">Card content on light orange against green backdrop.</p>
+        </div>
+      </section>
+      {/* <div style="background: linear-gradient(to right, #DFFFE0, #FFF4E0);" className="p-12"> */}
+      {/* <h1 class="text-xl font-bold text-[#333] bg-red-500">Mixed Color Background</h1>
+      <div className="flex flex-row items-start gap-x-[20px] bg-green-200 relative">
+        <div className="sticky top-0 self-start">
+          <p className="text-blue-500 mb-2">First image</p>
+          <img
+            src={FirstImage}
+            alt="user image"
+            className="rounded-full h-[50px] w-[50px] border-[3px] border-purple-500"
+          />
+        </div>
+        <div>
+          <p className="text-blue-500">Second images</p>
+          {repeatedImages.map((img, index) => (
+            <div key={index} className="mb-2">
+              <img
+                src={img}
+                alt={`user-${index}`}
+                className="rounded-full h-[50px] w-[50px] border-[3px] border-purple-500"
+              />
+            </div>
+          ))}
+        </div>
+      </div> */}
+      {/* </div> */}
     </>
   );
 };
